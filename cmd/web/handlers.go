@@ -24,28 +24,26 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, snippet := range snippets {
-		fmt.Fprintf(w, "%+v\n", snippet)
+	files := []string{
+		"./ui/html/base.tmpl",
+		"./ui/html/partials/nav.tmpl",
+		"./ui/html/pages/home.tmpl",
 	}
 
-	/*
-		files := []string{
-			"./ui/html/base.tmpl",
-			"./ui/html/partials/nav.tmpl",
-			"./ui/html/pages/home.tmpl",
-		}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
 
-		ts, err := template.ParseFiles(files...)
-		if err != nil {
-			app.serverError(w, err)
-			return
-		}
+	data := &templateData{
+		Snippets: snippets,
+	}
 
-		err = ts.ExecuteTemplate(w, "base", nil)
-		if err != nil {
-			app.serverError(w, err)
-		}
-	*/
+	err = ts.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		app.serverError(w, err)
+	}
 }
 
 // snippetView is the handler func for the route /snippet/view.
