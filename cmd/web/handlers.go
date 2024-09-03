@@ -6,17 +6,12 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/julienschmidt/httprouter"
 	"gitlab.com/yagofuruta/snippetbox/internal/models"
 )
 
 // home is the handler func for the route /.
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	// Make / a fixed path.
-	if r.URL.Path != "/" {
-		app.notFound(w)
-		return
-	}
-
 	snippets, err := app.snippets.Latest()
 	if err != nil {
 		app.serverError(w, err)
@@ -31,7 +26,9 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 // snippetView is the handler func for the route /snippet/view.
 func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	params := httprouter.ParamsFromContext(r.Context())
+
+	id, err := strconv.Atoi(params.ByName("id"))
 	if err != nil || id < 1 {
 		app.notFound(w)
 		return
@@ -52,14 +49,12 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	app.render(w, http.StatusOK, "view.tmpl", data)
 }
 
-// snippetCreate is the handler func for the route /snippet/create.
+// snippetCreate handles the GET request for the route /snippet/create.
 func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		w.Header().Set("Allow", http.MethodPost)
-		app.clientError(w, http.StatusMethodNotAllowed)
-		return
-	}
+}
 
+// snippetCreatePost is the handler func for the route /snippet/create.
+func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request) {
 	// Dummy data.
 	// TODO: Remove.
 	title := "Test"
@@ -72,5 +67,5 @@ func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("/snippet/view?id=%d", id), http.StatusSeeOther)
+	http.Redirect(w, r, fmt.Sprintf("/snippet/view/%d", id), http.StatusSeeOther)
 }
