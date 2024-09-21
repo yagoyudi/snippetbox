@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"gitlab.com/yagofuruta/snippetbox/internal/models"
+	"github.com/yagofuruta/snippetbox/internal/models"
 )
 
 type templateData struct {

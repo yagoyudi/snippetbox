@@ -7,8 +7,8 @@ import (
 	"strconv"
 
 	"github.com/julienschmidt/httprouter"
-	"gitlab.com/yagofuruta/snippetbox/internal/models"
-	"gitlab.com/yagofuruta/snippetbox/internal/validator"
+	"github.com/yagofuruta/snippetbox/internal/models"
+	"github.com/yagofuruta/snippetbox/internal/validator"
 )
 
 type snippetCreateForm struct {
