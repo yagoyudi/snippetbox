@@ -12,4 +12,7 @@ require (
 	gitlab.com/yagofuruta/snippetbox v0.0.0-20240921131733-9ec914797799
 )
 
-require filippo.io/edwards25519 v1.1.0 // indirect
+require (
+	filippo.io/edwards25519 v1.1.0 // indirect
+	golang.org/x/crypto v0.27.0 // indirect
+)
