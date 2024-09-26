@@ -58,8 +58,8 @@ func Matches(value string, rx *regexp.Regexp) bool {
 	return rx.MatchString(value)
 }
 
-// PermittedInt returns true if the value is in the permittedValues list.
-func PermittedInt(value int, permittedValues ...int) bool {
+// PermittedValue returns true if the value is in the permittedValues list.
+func PermittedValue[T comparable](value T, permittedValues ...T) bool {
 	for _, permittedValue := range permittedValues {
 		if value == permittedValue {
 			return true
