@@ -1,4 +1,4 @@
-module github.com/yagofuruta/snippetbox
+module github.com/yagoyudi/snippetbox
 
 go 1.22.3
 
@@ -9,7 +9,6 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/justinas/alice v1.2.0
-	gitlab.com/yagofuruta/snippetbox v0.0.0-20240921131733-9ec914797799
 )
 
 require (

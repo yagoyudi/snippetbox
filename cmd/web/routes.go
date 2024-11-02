@@ -5,7 +5,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/justinas/alice"
-	"github.com/yagofuruta/snippetbox/ui"
+	"github.com/yagoyudi/snippetbox/ui"
 )
 
 // routes returns a servemux containing out application routes.
