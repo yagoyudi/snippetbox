@@ -3,7 +3,7 @@ package models
 import (
 	"testing"
 
-	"github.com/yagofuruta/snippetbox/internal/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestUserModelExists(t *testing.T) {
@@ -37,7 +37,7 @@ func TestUserModelExists(t *testing.T) {
 			m := UserModel{db}
 			exists, err := m.Exists(tt.userID)
 			assert.Equal(t, exists, tt.want)
-			assert.NilError(t, err)
+			assert.NoError(t, err)
 		})
 	}
 }

@@ -3,7 +3,7 @@ package mocks
 import (
 	"time"
 
-	"github.com/yagofuruta/snippetbox/internal/models"
+	"github.com/yagoyudi/snippetbox/internal/models"
 )
 
 type UserModel struct{}

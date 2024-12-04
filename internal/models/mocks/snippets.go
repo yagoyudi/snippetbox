@@ -3,7 +3,7 @@ package mocks
 import (
 	"time"
 
-	"github.com/yagofuruta/snippetbox/internal/models"
+	"github.com/yagoyudi/snippetbox/internal/models"
 )
 
 var mockSnippet = &models.Snippet{
@@ -14,7 +14,8 @@ var mockSnippet = &models.Snippet{
 	Expires: time.Now(),
 }
 
-type SnippetModel struct{}
+type SnippetModel struct {
+}
 
 func (m *SnippetModel) Insert(title string, content string, expires int) (int, error) {
 	return 2, nil
